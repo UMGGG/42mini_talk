@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 17:12:52 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/06/22 17:51:12 by jaeyjeon         ###   ########.fr       */
+/*   Created: 2021/11/19 14:24:21 by jaeyjeon          #+#    #+#             */
+/*   Updated: 2021/11/24 00:33:04 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "libft.h"
 
-void	sig_handler_usr1(int signo)
+int	ft_isascii(int c)
 {
-	printf ("signal!!!!!!!\n");
-	exit (0);
-}
-
-int	main(void)
-{
-	pid_t	pid;
-
-	pid = getpid();
-	printf("server pid : %d\n", pid);
-	signal(SIGINT, sig_handler_usr1);
-	while (1)
-		sleep(1);
+	if (c >= 0 && c <= 127)
+		return (1);
 	return (0);
 }

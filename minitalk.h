@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:19:16 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/07/01 17:55:35 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/07/01 18:23:03 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_data	g_data;
 
 int		change_dec(char *str);
 int		check_pipe(char chr);
+int		check_str(char *str);
 char	*change_bin(int dec);
 void	set_data(pid_t pid);
 void	sig_usr2(int signum);

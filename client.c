@@ -6,37 +6,59 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:18:11 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/07/01 18:29:17 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/07/05 02:18:43 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
+void	send_end(pid_t pid)
+{
+	int	i;
+
+	i = 0;
+	while (i != 8)
+	{
+		kill(pid, SIGUSR1);
+		i++;
+		usleep(90);
+	}
+	return ;
+}
+
+void	send_msg(pid_t pid, char a)
+{
+	if (a == '0')
+		kill(pid, SIGUSR1);
+	else if (a == '1')
+		kill(pid, SIGUSR2);
+}
+
 int	main(int argc, char **argv)
 {
 	char	*str;
+	char	*save;
 
 	if (argc != 3)
 		return (0);
-	printf("%s\n", argv[2]);
 	if (check_str(argv[2]))
 		return (0);
-	printf("%s\n", argv[2]);
 	while (*argv[2])
 	{
 		str = change_bin((int)*argv[2]);
+		save = str;
 		if (str == 0)
 			return (0);
 		while (*str)
 		{
-			if (*str == '0')
-				kill(ft_atoi(argv[1]), SIGUSR1);
-			else if (*str == '1')
-				kill(ft_atoi(argv[1]), SIGUSR2);
+			send_msg(ft_atoi(argv[1]), *str);
 			str++;
-			usleep(20);
+			usleep(90);
 		}
 		argv[2]++;
+		free(save);
 	}
+	send_end(ft_atoi(argv[1]));
+	exit(0);
 	return (0);
 }

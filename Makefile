@@ -6,7 +6,7 @@
 #    By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/04 20:00:47 by jaeyjeon          #+#    #+#              #
-#    Updated: 2022/07/05 02:31:45 by jaeyjeon         ###   ########.fr        #
+#    Updated: 2022/07/05 18:10:27 by jaeyjeon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ CLIENT_OBJS		=	$(CLIENT_SRCS:.c=.o)
 
 $(NAME):	$(SERVER_OBJS) $(CLIENT_OBJS)
 			make -C $(LIB_DIR)
-			$(CC) $(SERVER_OBJS) -L $(LIB_DIR) -lft -o server
-			$(CC) $(CLIENT_OBJS) -L $(LIB_DIR) -lft -o client
+			$(CC) ${CFLAGS} $(SERVER_OBJS) -L $(LIB_DIR) -lft -o server
+			$(CC) ${CFLAGS} $(CLIENT_OBJS) -L $(LIB_DIR) -lft -o client
 
 all: 		$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:19:16 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/07/05 01:58:18 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:00:06 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <signal.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "lib/libft/libft.h"
 
 typedef struct s_data
@@ -31,7 +32,7 @@ t_data	g_data;
 
 int		change_dec(char *str);
 int		check_pipe(char chr);
-int		check_str(char *str);
+int		check_str_pid(int pid, char *str);
 char	*change_bin(int dec);
 void	set_data(pid_t pid);
 void	sig_usr2(int signum);

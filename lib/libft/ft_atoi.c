@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:37:58 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/01/12 00:08:20 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:59:29 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ int	ft_atoi(const char *str)
 	num = 0;
 	pm = 1;
 	i = check_whitespace(str);
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			pm *= -1;
-		i++;
-	}
 	while (str[i] != '\0')
 	{
 		if (str[i] >= 48 && str[i] <= 57)
@@ -47,7 +41,7 @@ int	ft_atoi(const char *str)
 			num += (int)(str[i] - 48);
 		}
 		else
-			break ;
+			return (0);
 		i++;
 	}
 	return (pm * num);

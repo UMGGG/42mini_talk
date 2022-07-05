@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:41:40 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/07/05 02:09:51 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/07/05 22:41:43 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	sig_usr1(int signum)
 		g_data.dec = change_dec(g_data.bit);
 		a = (char)g_data.dec;
 		if (a == '\0')
+		{
 			write(1, "\n", 1);
+			g_data.count = 0;
+		}
 		else
 			write(1, &a, 1);
 		g_data.count = 0;
@@ -47,22 +50,18 @@ void	sig_usr2(int signum)
 	}
 }
 
-int	finish_server(void)
-{
-	free (g_data.pid);
-	return (0);
-}
-
 int	main(void)
 {
 	set_data(getpid());
+	if (g_data.pid == 0)
+		return (0);
 	write(1, "pid : ", 6);
 	write(1, g_data.pid, strlen(g_data.pid));
 	write(1, "\n", 1);
+	free(g_data.pid);
 	signal(SIGUSR1, sig_usr1);
 	signal(SIGUSR2, sig_usr2);
 	while (1)
 		pause();
-	free(g_data.pid);
-	return (finish_server());
+	return (0);
 }

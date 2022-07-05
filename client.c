@@ -6,7 +6,7 @@
 /*   By: jaeyjeon <@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 18:18:11 by jaeyjeon          #+#    #+#             */
-/*   Updated: 2022/07/05 02:18:43 by jaeyjeon         ###   ########.fr       */
+/*   Updated: 2022/07/05 23:23:56 by jaeyjeon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	send_end(pid_t pid)
 	{
 		kill(pid, SIGUSR1);
 		i++;
-		usleep(90);
+		usleep(200);
 	}
 	return ;
 }
@@ -41,19 +41,19 @@ int	main(int argc, char **argv)
 
 	if (argc != 3)
 		return (0);
-	if (check_str(argv[2]))
+	if (check_str_pid(ft_atoi(argv[1]), argv[2]))
 		return (0);
 	while (*argv[2])
 	{
 		str = change_bin((int)*argv[2]);
-		save = str;
 		if (str == 0)
 			return (0);
+		save = str;
 		while (*str)
 		{
 			send_msg(ft_atoi(argv[1]), *str);
 			str++;
-			usleep(90);
+			usleep(200);
 		}
 		argv[2]++;
 		free(save);
